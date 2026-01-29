@@ -32,7 +32,7 @@
 
 - 📝 **完整日誌記錄**: 詳細的執行日誌保存到 `milestone_timeline.log`，便於調試和監控
 - 🔧 **高度可配置**: 通過 `config/settings.py` 自定義色彩、字體、分頁等參數
-- 💾 **高解析度輸出**: 支持 300 DPI 高質量 Excel 報告嵌入
+- 💾 **高解析度輸出**: 支持 300 DPI 高質量圖表嵌入到 Excel
 - 🌐 **中文支持**: 完整的繁體中文字體配置，支持 Windows、macOS、Linux
 
 ## 📁 項目結構
@@ -53,8 +53,7 @@ DrawFlow/
 │   ├── excel_reader.py         # Excel 讀取和數據驗證
 │   ├── data_processor.py       # 數據處理、統計分析、分頁邏輯
 │   ├── visualizer.py           # 圖表生成、時間線繪製、統計面板
-│   ├── excel_generator.py      # Excel 檔案生成、圖片嵌入
-│   └── pdf_generator.py        # （備選）PDF 直接生成方案
+│   └── excel_generator.py      # Excel 檔案生成、圖片嵌入
 │
 ├── data/                        # 數據目錄
 │   ├── input/                  # 輸入 Excel 檔案目錄
@@ -181,11 +180,10 @@ TIMELINE_AXIS_COLOR = (0.3, 0.3, 0.3)   # 深灰色軸線
 TEXT_COLOR = (0.2, 0.2, 0.2)             # 深灰色文字
 ```
 
-### 分頁設定
+### 圖表設定
 
 ```python
-MILESTONES_PER_PAGE = 50    # 每頁最大里程碑數
-DPI = 300                    # 輸出解析度（DPI）
+DPI = 300                    # 圖表解析度（用於 Excel 嵌入圖片）
 ```
 
 ### 支持的日期格式
@@ -507,7 +505,7 @@ A: 理論上無限制。超過 50 個自動分頁，每頁最多 50 個（可配
 A: 可以。編輯 `config/settings.py` 中的 `COLOR_GRADIENT_*` 參數。
 
 **Q: 輸出格式只支持 Excel 嗎？**  
-A: 當前主要輸出格式是 Excel。項目中包含 `pdf_generator.py` 和 `pdf_generator_reportlab.py` 作為 PDF 支持的備選方案。
+A: 是的，目前專案專注於提供高質量的 Excel 報告輸出，方便用戶進行二次編輯和數據分析。
 
 **Q: 如何在報告中添加自定義信息？**  
 A: 修改 `src/excel_generator.py` 中的 `save_excel` 方法，在 Excel 中添加自定義行或單元格。
